@@ -19,7 +19,7 @@ int main()
     int photosPrinted = 0;
     int photosDeveloped = 0;
 
-    int totalRevenue = 0;
+    double totalRevenue = 0.0;
     
     bool exitChosen = false;
     bool fullExitChosen = false;
@@ -65,7 +65,7 @@ int main()
 
                 case 4:
                     printf_s("Viewing today's revenue\n--------------\n");
-                    printf_s("Today's revenue = %.2f\n", (float)totalRevenue);
+                    printf_s("Today's revenue = %.2lf\n", totalRevenue);
                     break;
 
                 case 5:
