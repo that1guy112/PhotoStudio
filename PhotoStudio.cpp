@@ -18,6 +18,10 @@ int main()
     bool exitChosen = false;
     bool fullExitChosen = false;
     int photographerChoice = 0;
+    int customerChoice = 0;
+
+    int customerPhotoAmountToPrint = 0;
+    int customerPhotoAmountToDevelop = 0;
     
 
     while(!fullExitChosen)// lisa ka functioni mis laseb kasutajal kontrollida mis materjalid alles on + mitu fotod oli valmis tehtud.
@@ -38,16 +42,45 @@ int main()
             printf_s("Customer chosen\n");
 
             printf_s("What would you like to do? (Enter only number)\n");
-            printf_s("1. Develop photos\n2. Print photos\n3. Exit\n4. Submit a report. (IN DEVELOPMENT)\n");
+            printf_s("1. I wish to develop photos\n2. I wish to print photos\n3. Exit\n");
+
+            scanf_s("%d", &customerChoice);
+
+            while (!exitChosen)
+            {
+                switch (customerChoice)
+                {
+                case 1:
+                    printf_s("How many photos would you like to develop?\n");
+                    scanf_s("%d", &customerPhotoAmountToDevelop);
+                    exitChosen = true;
+                    break;
+                case 2:
+                    printf_s("How many photos would you like to print?\n");
+                    scanf_s("%d", &customerPhotoAmountToPrint);
+                    exitChosen = true;
+                    break;
+                case 3:
+                    exitChosen = true;
+                    break;
+                }
+
+            }
+
+            printf_s("Do you want to make a regular or rush order?\n");
+            printf_s("1. Regular\n2. Rush\n3. Exit\n");
+            scanf_s("%d", &customerChoice);
+            
             break;
         case 3:
             printf_s("Photographer chosen\n");
             printf_s("You currently have: %d paper, %d developer and %d ink\n", paperAmount, developerAmount, inkAmount);
+            printf_s("You have %d photos printed and %d photos developed\n", photosPrinted, photosDeveloped);
+            printf_s("You have %d photos to print and %d photos to develop.\n\n", photosToPrint, photosToDevelop);
             
             while (!exitChosen)
             {
-                printf_s("You have %d photos printed and %d photos developed\n", photosPrinted, photosDeveloped);
-                printf_s("You have %d photos to print and %d photos to develop.\n\n", photosToPrint, photosToDevelop);
+                
                 printf_s("What would you like to do? (Enter only number)\n");
                 printf_s("1. Develop photos\n2. Print photos\n3. Exit\n4. Submit a report. (IN DEVELOPMENT)\n");
             
