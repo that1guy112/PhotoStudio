@@ -365,7 +365,7 @@ void photographer() // the photographer. the photographer can complete the order
     for (int i = 0; i < clientCapacity; i++)
     {
         if (clientArray[i].isForwarded){
-            printf_s("Customer %d has an uncomplete order!\n", i);
+            printf_s("Customer %d has an incomplete order!\n", i);
         }
     }
 
@@ -378,14 +378,14 @@ void photographer() // the photographer. the photographer can complete the order
         printf_s("You have %d photos printed and %d photos developed\n", clientArray[photographerCustomerChoice].photosPrinted, clientArray[photographerCustomerChoice].photosDeveloped);
         printf_s("You have %d photos to print and %d photos to develop.\n\n", clientArray[photographerCustomerChoice].photosToPrint, clientArray[photographerCustomerChoice].photosToDevelop);
         printf_s("What would you like to do? (Enter only number)\n");
-        printf_s("1. Develop photos\n2. Print photos\n3. Finish order.\n4. Pray for materials\n5. Exit\n");
+        printf_s("1. Develop photos\n2. Print photos\n3. Finish order.\n4. Purchase materials\n5. Exit\n");
     
         scanf_s("%d", &photographerChoice);
     
         switch (userChoice(photographerChoice))
         {
             case 1:
-            if (paperAmount == 0 || developerAmount == 0) 
+            if (*pntPaperAmount == 0 || *pntDeveloperAmount == 0) 
             { //case 1
                 printf_s("Insufficient materials!\n");
                 continue;
@@ -405,7 +405,11 @@ void photographer() // the photographer. the photographer can complete the order
                 else printf_s("You dont need to develop any more photos\n");
                 break;
             case 2:  // main way to print photos.
-
+            if (*pntInkAmount == 0 || *pntPaperAmount == 0) 
+            { //case 1
+                printf_s("Insufficient materials!\n");
+                continue;
+            }
                 if (clientArray[photographerCustomerChoice].photosToPrint > 0) {         
                     printf_s("Printing photos.\n");
                     --clientArray[photographerCustomerChoice].photosToPrint;
@@ -434,11 +438,9 @@ void photographer() // the photographer. the photographer can complete the order
                 break;
 
             case 4: //temporary method to restock materials
-                
-                (*pntDeveloperAmount)++;
-                (*pntPaperAmount)++;
-                (*pntInkAmount)++;
-                printf_s("Restocked");
+                printf_s("What materials would you like to purchase?\n1. 5x Paper (%0.2f eur)\n2. 5x Developer (%0.2f eur)\n3. 5x Ink (%0.2f eur)\n", paperCost, developerCost, inkCost);
+                printf_s("Current balance: %0.2f\n", *currentRevPntr);
+                materialPurchase(scanf_s("%d", &materialPurchaseChoice));
                 break;
             case 5:
                 exitChosen = true;
@@ -455,6 +457,7 @@ void photographer() // the photographer. the photographer can complete the order
 }
 int main()
 {
+    materialPurchaseChoice = 0;
     clientArray = (client*)malloc(clientCapacity * sizeof(client));
     if (!clientArray) {
         printf_s("Memory allocation failed!\n");
