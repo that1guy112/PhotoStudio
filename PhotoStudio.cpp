@@ -66,12 +66,6 @@ struct client
 };
 
 
-
-    
-    //THIS IS A TEST
-    
-
-
 client* clientArray = NULL;
 
 // initialize a client with default values so that the starting client isnt filled with garbage values.
