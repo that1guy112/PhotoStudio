@@ -65,6 +65,26 @@ struct client
     bool isCompleted = false; // order complete, photos printed and/or developed.
 };
 
+<<<<<<< HEAD
+    int photosToPrint = 5;
+    int photosToDevelop = 5;
+    int photosPrinted = 0;
+    int photosDeveloped = 0;
+    
+    bool exitChosen = false;
+    bool fullExitChosen = false;
+    int photographerChoice = 0;
+    
+    //THIS IS A TEST
+    while(!fullExitChosen)// lisa ka functioni mis laseb kasutajal kontrollida mis materjalid alles on + mitu fotod oli valmis tehtud.
+    {
+        exitChosen = false; //used to make sure that the role selection while loop works correctly. 
+        
+
+      
+        printf_s("Choose your role: (Enter only number)\n");
+        printf_s("1. Receptionist (IN DEVELOPMENT)\n2. Customer (IN DEVELOPMENT)\n3. Photographer\n4. Quit Program\n");
+=======
 
 
 
@@ -131,17 +151,18 @@ int userChoice(int Choice)
         return Choice;
     }
 }
+>>>>>>> 6c31958f916a2822bccc0a30e28a9475de2db7d6
 
 int materialPurchase(int purchaseChoice)
 {
     switch (purchaseChoice)
     {
     case 1:
-        if (currentRevenue >= paperCost)
+        if (*currentRevPntr >= *paperCostPntr)
         {
-            paperAmount += 5;
-            currentRevenue -= 2.5;
-            materialSpendingCost += 2.5;
+            *pntPaperAmount += 5;
+            *currentRevPntr -= *paperCostPntr;
+            *materialSpendingCostPntr += *paperCostPntr;
         }
         else
         {
@@ -151,9 +172,9 @@ int materialPurchase(int purchaseChoice)
     case 2:
         if (currentRevenue >= developerCost)
         {
-            developerAmount += 5;
-            currentRevenue -= 3;
-            materialSpendingCost += 3;
+            *pntDeveloperAmount += 5;
+            *currentRevPntr -= *developerCostPntr;
+            materialSpendingCost += *developerCostPntr;
         }
         else
         {
@@ -163,9 +184,9 @@ int materialPurchase(int purchaseChoice)
     case 3:
         if (currentRevenue >= inkCost)
         {
-            inkAmount += 5;
-            currentRevenue -= 3;
-            materialSpendingCost += 3;
+            *pntInkAmount += 5;
+            *currentRevPntr -= *inkCostPntr;
+            *materialSpendingCostPntr += *inkCostPntr;
         }
         else
         {
@@ -397,8 +418,8 @@ void photographer() // the photographer. the photographer can complete the order
                     //TODO: redo these into pointers
                     ++(*pntDeveloperSpent);
                     ++(*pntPaperSpent);
-                    (*totalRevPntr) += developCost;
-                    (*currentRevPntr) += developCost;
+                    (*totalRevPntr) += *developCostPntr;
+                    (*currentRevPntr) += *developCostPntr;
                 }
                 else printf_s("You dont need to develop any more photos\n");
                 break;
@@ -410,8 +431,8 @@ void photographer() // the photographer. the photographer can complete the order
                     (*pntInkAmount)--;
                     ++clientArray[photographerCustomerChoice].photosPrinted;
                     ++(*pntInkSpent);
-                    (*totalRevPntr) += printCost;
-                    (*currentRevPntr) += printCost;
+                    (*totalRevPntr) += *printCostPntr;
+                    (*currentRevPntr) += *printCostPntr;
                 }
                 else printf_s("You dont need to print any more photos\n");
                 break;
