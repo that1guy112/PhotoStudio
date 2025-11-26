@@ -65,27 +65,11 @@ struct client
     bool isCompleted = false; // order complete, photos printed and/or developed.
 };
 
-<<<<<<< HEAD
-    int photosToPrint = 5;
-    int photosToDevelop = 5;
-    int photosPrinted = 0;
-    int photosDeveloped = 0;
-    
-    bool exitChosen = false;
-    bool fullExitChosen = false;
-    int photographerChoice = 0;
+
+
     
     //THIS IS A TEST
-    while(!fullExitChosen)// lisa ka functioni mis laseb kasutajal kontrollida mis materjalid alles on + mitu fotod oli valmis tehtud.
-    {
-        exitChosen = false; //used to make sure that the role selection while loop works correctly. 
-        
-
-      
-        printf_s("Choose your role: (Enter only number)\n");
-        printf_s("1. Receptionist (IN DEVELOPMENT)\n2. Customer (IN DEVELOPMENT)\n3. Photographer\n4. Quit Program\n");
-=======
-
+    
 
 
 client* clientArray = NULL;
@@ -151,7 +135,6 @@ int userChoice(int Choice)
         return Choice;
     }
 }
->>>>>>> 6c31958f916a2822bccc0a30e28a9475de2db7d6
 
 int materialPurchase(int purchaseChoice)
 {
@@ -345,7 +328,6 @@ void customer() //Function for the customer role. allows to place orders (if the
             printf_s("When would you like to collect the photos? (dd mm yyyy)\n"); //order deadline input
 
             scanf_s("%d %d %d", &clientArray[currentClient].day, &clientArray[currentClient].month, &clientArray[currentClient].year);
-            //TODO: redo the photographer system so that the business gets the money per photo.
             printf_s("Would you like a rush order or regular order?\n 0. Regular\n 1. Rush: Order costs 30 percent more.\n"); //rush/regular order input
 
             scanf_s("%d", &clientArray[currentClient].rushOrderInt);
@@ -415,7 +397,6 @@ void photographer() // the photographer. the photographer can complete the order
                     (*pntDeveloperAmount)--;
                     (*pntPaperAmount)--;
                     ++clientArray[photographerCustomerChoice].photosDeveloped;
-                    //TODO: redo these into pointers
                     ++(*pntDeveloperSpent);
                     ++(*pntPaperSpent);
                     (*totalRevPntr) += *developCostPntr;
@@ -429,8 +410,10 @@ void photographer() // the photographer. the photographer can complete the order
                     printf_s("Printing photos.\n");
                     --clientArray[photographerCustomerChoice].photosToPrint;
                     (*pntInkAmount)--;
+                    (*pntPaperAmount)--;
                     ++clientArray[photographerCustomerChoice].photosPrinted;
                     ++(*pntInkSpent);
+                    ++(*pntPaperSpent);
                     (*totalRevPntr) += *printCostPntr;
                     (*currentRevPntr) += *printCostPntr;
                 }
