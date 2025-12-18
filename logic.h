@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-// Material purchase function (from original)
+
 int materialPurchase(int purchaseChoice);
 
 // Photographer functions
