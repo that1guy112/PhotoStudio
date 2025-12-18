@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Global variables (matching original)
 int paperAmount = 5;
 int* pntPaperAmount = &paperAmount;
 int developerAmount = 5;
