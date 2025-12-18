@@ -16,7 +16,6 @@ typedef struct client {
     bool isCompleted;
 } client;
 
-// Global state variables (matching original structure)
 extern int paperAmount;
 extern int* pntPaperAmount;
 extern int developerAmount;
@@ -54,7 +53,6 @@ extern int clientCapacity;
 extern int clientCurrentCount;
 extern client* clientArray;
 
-// Function declarations
 void initClient(client* c);
 void initGlobalState();
 bool resizeClientArray(int newCapacity);
